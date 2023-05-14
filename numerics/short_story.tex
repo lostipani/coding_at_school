@@ -1,0 +1,78 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath, amssymb}
+
+\title{Make your living with... the Euler's number}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{A short story}
+It came to pass you've been hired by a large firm in a well paid job position. Money is poured into your bank account. It's time to save up for a richer future.
+
+A financial advisor heartily (well, for sure!) recommends an investment plan at his hedge fund. Your bank, instead, suggests to keep a safe and sound attitude and wait for less troubled waters whereas, to date, a worldwide credit crunch is undermining the stability of stock markets.
+
+Let's get started by inspecting how money is discounted by simple or compound interests.
+
+\section{Accumulation functions}
+
+Say you have $M_0$ money to invest. The \emph{simple} interest provides a capital gain based on the starting quantity with a constant rate. If we measure the time in years, for each year you'll get:
+\begin{align}
+&M(t=0) = M_0\\
+&M(t=1; \mu) = M_0 + M_0\mu 1\\
+&M(t=2; \mu) = M_0 + M_0\mu 2\\
+&M(t; \mu) = M_0 + M_0\mu t = M_0 (1+\mu t) = M_0 a_s(t; \mu).
+\end{align}
+
+Therefore the increase of your initial capital is linear in time for a given yearly interest rate $\mu$.
+
+Another scheme, however, is available: the \emph{compound} interest. This computes a return each year based on what was gained in the previous year. We thus have:
+\begin{align}
+&M(t=0) = M_0\\
+&M(t=1; \mu) = M_0 + M_0\mu = M_0 (1+\mu)\\
+&M(t=2; \mu) = M(t=1) + M(t=1)\mu = M_0 (1+\mu)^2\\
+&M(t; \mu) = M_0 (1+\mu)^t = M_0 a_c(t; \mu).
+\end{align}a
+
+In this case your investment grows in time exponentially. It looks way better than the simple interest, uh?!
+
+Within one year the simple interest scheme is employed, though. Why? Because numbers less than one make things working the other way round... let's code these formulas and see what happens!
+
+\section{Euler's number}
+The accumulation function for the compound interest $a_c(t; \mu)$ encompasses much more maths than what could seem. We can, indeed, derive the Euler's number from it. This is the $e=2.71828\ldots$ constant, anytime popping up in maths and science.
+
+Say we have a yearly interest rate, but the capital is discounted more frequently than a year. In other words, in a year the gain is evaluated $n$ times, each time with a fraction of the chosen interest rate. If we convert the quantities as follows:
+\begin{align}
+&\mu \rightarrow \mu/n,\\
+&t \rightarrow nt.
+\end{align}
+
+The accumulation function becomes
+\begin{equation}
+a_c(t; \mu, n) = \left( 1 + \frac{\mu}{n}\right)^{nt},
+\end{equation}
+
+which limit for very high frequencies reads
+\begin{equation}
+\lim_{n\rightarrow \infty} a_c(t; \mu, n) = \lim_{n\rightarrow \infty} \left( 1 + \frac{\mu}{n}\right)^{nt} = e^{\mu t}.
+\end{equation}
+
+Therefore, for large values of $n$ our formula approaches our beloved number!
+
+\section{How to estimate Riemann integrals}
+How much is this approximation good? Or, equivalently, which $n$ is enough? To answer, we need a measure of ``closeness''. For the exponential is a monotonically increasing positive-defined function, we may compare its integral with the area below the numerical representation for a given $n$.
+
+The integral of the $g(t) = e^{\mu t}$ analytical function is striaghtforward to evaluate by the Riemann definition in the domain $t \in [0, T]$,
+\begin{equation}
+\int_0^T e^{\mu t} \mathrm{d}t = \frac{1}{\mu} \left. e^{\mu t}\right|_0^T = \frac{1}{\mu} \left( e^{\mu T} - 1\right).
+\end{equation}
+This is a number that can be easy-peasy found.
+
+What about estimating the integral of $a_c(t; \mu, n)$?
+\end{document}
+
