@@ -1,0 +1,678 @@
+%
+% Eserciziario di informatica per tutti i livelli.
+% 
+% Il codice non e' pulitissimo. Si potrebbe uniformare meglio la formattazione, organizzare gli esercizi in piu' capitoli, magari aggiungere dei tag per il tipo di conoscenze richieste o ancora delle stelline per la difficolta'.
+% Vi consiglio fortemente di riguardare grammatica, comprensibilita' dei testi e fattibilita' a seconda della preparazione degli studenti.
+% Insomma questa e' una versione molto beta ma nel tempo potrebbe essere un buon eserciziario per tutti gli anni.
+%
+%
+% Queste le fonti principali:
+% 1) lista di esercizi di Gloria
+% 2) https://ticoprof.wordpress.com/
+% 3) C++ Teoria e Ambiente di programmazione di Lorenzi, Moriggia (pochi esercizi)
+% 4) Camagni, Nikolassi (pochi esercizi)
+% 5) me stesso (L.Stipani)
+%
+% Il .tex viene facilmente compilato via pdflatex della tex-live distro su macchine Linux. Ad ogni modo non credo dovrebbero esserci problemi con MikTeX.
+%
+%
+% Giugno 2022
+
+\documentclass{article}
+
+% Vi consiglio di non toccare l'import dei package inputenc, fontenc che permettono di scrivere ed ottenere lettere accentate
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%\usepackage[italian]{babel} %% non necessario
+\usepackage[left=2cm, right=2cm]{geometry} %% modificare a piacimento
+\usepackage{amsmath, amssymb}
+
+\title{Esercizi di programmazione}
+\date{\today}
+\author{Lorenzo Stipani}
+
+\begin{document}
+\maketitle
+
+Questa raccolta di esercizi è il risultato di un anno di insegnamento di informatica presso il Liceo Scientifico "G. Galilei" di Trento, per le classi dalla prima alla quinta dell'indirizzo Scienze Applicate, nell'anno scolastico 2021/2022. La scarsa qualità e quantità degli esercizi proposti nei libri di testo ha reso necessario un fine lavoro di saccheggiamento di risorse online messe a disposizione da sconosciuti (comunque gentilissimi) colleghi ma anche di esercizi suggeriti dai carissimi membri dell'affollatissimo dipartimento di informatica o, perfino, di personalissima inventiva.
+
+Gli argomenti coprono i fondamentali dell'arte del \emph{programming}, il paradigma ad oggetti (OOP), gli algoritmi su array statici numerici e stringhe sia iterativi sia ricorsivi, le strutture dati dinamiche lineari come liste ed alberi binari, ed infine le classi container di C++.
+
+Per qualsivoglia doglianza inviare un'email a: \texttt{lorenzo(dot)stipani(at)gmail(dot)com}
+
+\section{Fondamentalissimi}
+\begin{enumerate}
+
+\item Scrivere un codice che stampa una scritta di saluto, tipo "ciao mondo".
+
+\item Scrivere un codice in cui vengono dichiarate una variabile intera ed una reale inizializzate a piacere e con nomi a piacere. Stampare a terminale i loro valori.
+
+\item Scrivere un programma che prende dall'utente un numero reale e stampa il risultato della moltiplicazione del numero per un intero inizializzato a piacere.
+
+\item Scrivere un programma che prende dall'utente un numero intero e dice se è pari o dispari.
+
+\item Scrivere un programma che prende dall'utente un numero intero e dice se è un multiplo di 3 (usare la formula $x\%3 == 0$).
+
+\item Scrivere un codice che prende dall'utente un carattere e stampa un messaggio tipo: "il carattere inserito e': A".
+
+\item Scrivere un codice che dato un numero intero fornito dall'utente, controlla se il numero è positivo (incluso lo zero) o negativo e lo comunica con un messaggio.
+\end{enumerate}
+
+\section{Controlli di flusso}
+\begin{enumerate}
+
+\item Scrivere un programma che legge un carattere fornito dall'utente e dice se è una vocale: usare la condizione logica \texttt{(c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')} dove c è la variabile char, ovvero: se c è 'a', oppure è 'e', oppure è 'i', oppure è 'o', oppure è 'u'.
+
+\item Il programma legge due numeri e controlla se il primo è multiplo del secondo.
+
+\item Leggere un numero naturale N e stampare a terminale una stringa con un numero N di 'Y’ ad es. se N==6 allora stampare "YYYYYY".
+
+\item Scrivere i numeri naturali compresi tra 1 e un numero letto in input fornito dall'utente.
+
+\item L’utente inserisce un numero maggiore di 1 e il programma continua a calcolare i multipli del numero inserito fino a quando si supera il valore 100.
+
+\item Scrivere un programma che preso in input da utente un numero intero, stampa i numeri multipli di 3 a partire da 1 fino a N. Ad es.: per N=10 stampa: 1, 3, 6, 9.
+
+\item Chiedere all’utente di fornire un numero intero N e stampare i valori da N fino a 2 incluso. Ad es. N=5, stampa: 5,4,3,2. Se viene fornito N<2 il programma si chiude con un messaggio.
+
+\item Creare un programma che preso un numero dall'utente restituisce la somma con il numero precedente. Si ferma solo quando il numero fornito è uguale a 0. Per il primo numero restituire la somma con lo zero. 
+
+\item Scrivere un programma che continua a chiedere all'utente un numero float finché non viene fornito un numero >= 30. A quel punto stampa un messaggio di addio e chiude.
+
+\item Scrivere un programma che continuare a chiedere all'utente di fornire un numero intero e dice se è positivo strettamente oppure negativo strettamente (escluso lo zero). Quando viene inserito lo zero termina l'esecuzione.
+
+\item Scrivere un programma che simula lo lo sblocco di un cellulare, il programma legge un pin di 4 cifre inserito dall’utente e lo imposta come pin. Il programma successivamente chiede di reinserire il pin, se viene inserito quello corretto scrive “telefono sbloccato”, altrimenti lo richiede ed al terzo tentativo errato visualizza il messaggio “telefono bloccato".
+
+\item Creare un programma Calcolatrice che effettua le 4 operazioni (+,-,*,/) su due numeri reali forniti da tastiera. Creare un menù interattivo in cui a seconda del valore immesso dall'utente per una variabile "scelta" viene effettuata l'operazione corrispondente (1$\rightarrow$ +, 2$\rightarrow$ -, 3$\rightarrow$ *, 4$\rightarrow$ /) su due numeri successivamente forniti. Viene stampato il risultato dell'operazione e viene richiesto nuovamente di fare una scelta stampando un menù in cui si dice chiaramente che se si sceglie 1 si avrà la somma, e così via per le altre opzioni. Il ciclo termina quando la scelta è uguale a 0 allora il programma stampa un messaggio di addio e termina.
+
+\item Creare un programma che, dati due interi che rappresentano il tasso di propagazione di un virus (quante nuove persone ammalate ogni giorno per ogni persona già ammalata) e la popolazione totale, interi forniti da utente, dica quanti giorni sono necessari perché si ammali almeno la metà della popolazione considerando che all’inizio ci sia una sola persona ammalata.
+
+\item Scrivere un programma che continua a chiedere all'utente di fornire un numero e conta quanti pari e quanti dispari sono stati inseriti. Si ferma quando viene inserito un negativo.
+
+\item Scrivere un programma che calcola la radice quadrata intera di un numero X dato in input. La radice quadrata intera è il più grande naturale il cui quadrato è minore o uguale al numero X.
+
+\item Scrivere un programma che genera e stampa la tavola Pitagorica per i naturali da 1 a N, dove N è fornito dall'utente.
+
+\item Creare un programma che verifica se un numero intero è primo. Un numero primo è un naturale che è divisibile solo per se stesso e per 1.
+
+\item L’utente sceglie un numero intero N. Stampare tutti quei numeri naturali fino ad N tali che il doppio del numero meno 3 è maggiore strettamente di 7. Ad es.: per N=10 stampa: 6,7,8,9,10.
+
+\item Creare un programma che prende in input un numero scelto dall'utente di naturali. Poi chiede all'utente di fornire questi numeri e fornisce il valore del massimo inserito e in che posizione è stato inserito. Ad esempio: Quanti numeri fornisci? 5. Fornire i numeri: 4 5 7 1 2. Il max è 7 e si trova in posizione 3.
+
+\item Scrivere un programma per calcolare area e perimetro di un rettangolo con i due lati forniti dall'utente. Il programma deve mandare un messaggio di errore e chiudersi se un lato immesso è negativo.
+
+\item Scrivere un programma per calcolare area e perimetro di un rettangolo con i due lati forniti dall'utente. Se il lato immesso è negativo il programma non si chiude e continua a chiedere un valore per quel lato.
+
+\item Scrivere un programma che dato un numero reale in input stampa il modulo (valore assoluto).
+
+\item Scrivere un programma che calcola il doppio fattoriale di un numero naturale, cioè: $N!! = N(N-2)(N-4)\ldots 1$ dove $0! = 1, \quad 1! = 1.$
+
+\item Scrivere un programma che calcola la sequenza di Fibonacci fino al numero naturale N. Fibonacci è tale per cui un numero è la somma dei 2 precedenti, cioè la sequenza è: $1, 1, 2, 3, 5, 8, 13, \ldots$.
+
+\item Scrivi un programma che legge in ingresso N numeri interi e stampa in uscita la somma dei tre numeri.
+
+\item Scrivi un programma che prende in input i valori reali di N temperature e ne stampa in uscita il valore medio (con decimali).
+
+\item Scrivi un programma che calcola il costo sostenuto dalla scolaresca per andare a teatro sapendo che il biglietto ordinario costa 12 euro, i 2 docenti accompagnatori hanno lo sconto del 30\% e che il numero degli alunni deve essere letto in input da terminale. Stampare il costo totale.
+
+\item Scrivi un programma che calcola il resto dal benzinaio: dopo aver inserito il numero di litri di carburante introdotto nel motorino e il costo al litro della benzina, il programma deve visualizzare l’importo da pagare. L’utente digita l’importo di una banconota di valore superiore a tale importo e il programma visualizza il resto della banconota che questo deve ricevere.
+
+\item Scrivi un programma che legge in ingresso tre voti (possibile con virgola) di una materia scolastica e ne calcola la media. In uscita il programma stampa sia la media precisa che la media arrotondata al numero intero.
+
+\item Scrivi un programma che legge in input il numero totale di secondi e calcola il corrispondente numero di ore, minuti e secondi. Ad es: 4504 sec $\rightarrow$ 1 ora, 15 minuti, 4 secondi.
+
+\item Scrivi un programma che, dato il prezzo di un prodotto (inserito in ingresso da tastiera), applica lo sconto del 35\% se e solo se tale prezzo è maggiore di 100 euro. Poi aggiunge l'IVA del 20\% e stampa il prezzo finale.
+
+\item Calcolare quanto vale in euro uno sconto del 5\% su un valore di partenza di 75 euro. Poi determinare quanto vale il prezzo scontato.
+
+\item Vai a comprare un paio di jeans. Il prezzo di listino è 143 euro ma è tempo di saldi quindi viene applicato uno sconto del 25\%. Tuttavia sei un/a cliente fedele e quindi hai diritto ad un ulteriore sconto del 5\%. Infine una nuova offerta è valida: un ulteriore sconto di 20 euro se il prezzo di partenza è superiore ai 100 euro (in questo caso assumere un qualunque prezzo iniziale, non limitarsi al solo caso dell’esercizio).
+
+\item Un coltivatore vuole comprare un trattore che costa 5703.5 euro. Poiché è un modello vecchio viene applicato lo sconto del 15\%. Inoltre il cliente ha un buono di 200 euro da utilizzare sul prezzo già scontato. Calcolare quanto dovrà pagare il cliente.
+
+\item Scrivi un programma che legge in input il valore di due lati di un quadrilatero ed individua se si tratta di un quadrato o di un rettangolo.
+
+\item I bambini con meno di 10 anni e gli anziani con più di 80 anni non pagano il biglietto del cinema. Scriviamo un programma che, in base all’età, indichi se si ha diritto all’ingresso gratuito.
+
+\item Scrivi un programma che esegue il conto alla rovescia a partire da un valore compreso tra 10 e 20 inserito dall'utente.
+
+\item Scopri se sei un vero Boomer! Scrivere un programma che chieda l'età all'utente e che mostri un messaggio in base all'età
+	\begin{enumerate}
+	\item "Sei un esponente della generazione silenziosa" $\rightarrow$ (da 76 anni in poi)
+	\item "Sei un Baby Boomer" $\rightarrow$ da 58 a 75
+	\item "Sei un Gen X" $\rightarrow$ da 42 a 57
+	\item "Sei un Millennial" $\rightarrow$ fino a 41 anni,
+	\end{enumerate}
+
+\item Scrivi un programma che calcola l’importo della fattura telefonica prendendo in input il numero di minuti. Le tariffe sono le seguenti:
+	\begin{enumerate}
+	\item i primi 30 minuti si pagano 0.35 euro/min,
+	\item dai 30 ai 100 minuti si paga 0.25 euro/min,
+	\item oltre i 100 minuti si pagano 0.15 euro/min.
+	\end{enumerate}
+
+\item Scrivere un programma che legge 10 numeri e dice quanti sono positivi, quanti negativi e quanti nulli.
+
+\item Leggere una serie di numeri interi passati dall’utente, fermandosi al primo numero che rende la serie non crescente e restituendo quanti numeri erano stati inseriti.
+
+\item Si supponga che l’andamento di una popolazione si sviluppi nel seguente modo: un anno raddoppia l’anno successivo cala di un terzo. Creare un programma che dato un valore iniziale della popolazione e un valore da raggiungere di popolazione dica quanti anni ci mette quella popolazione a raggiungere o superare quel valore.
+
+\item Dopo aver fatto inserire un numero naturale il programma restituisce in output da quante cifre è composto il numero.
+
+\item Verificare che dato un N intero, il suo quadrato è la somma dei primi N dispari. Ad esempio: $N=3 \rightarrow 1+3+5 = 3\times 3$.
+
+\item Verificare il funzionamento dell'operazione \% (resto della divisione tra interi) stampando in colonna i risultati di n\%5 dove n va da -12 a 16.
+
+\item Scrivere un programma per simulare il lancio di N dadi $\{1, \ldots, 6\}$ dove N e' un numero arbitrario scelto nel main oppure dall'utente.
+
+\item Scrivere un programma per simulare il lancio di una moneta. Rappresentare testa/croce con i numeri 0/1. Utilizzare la giusta formula per ottenere da ogni numero random uno tra 0 e 1.
+
+\item Scrivere un programma che permette di giocare ai dadi. Ogni volta un utente sceglie quale numero giocare tra 1 e 6, il computer lancia il dado e stampa un messaggio se il giocatore ha vinto oppure no. Ripetere N volte, percio' implementarlo con un ciclo. Modificare il programma in modo che questo continui a far giocare finche' il giocatore oppure il computer vince. Vince chi arriva prima a 3. Quando uno dei due ha vinto il programma si chiude con un messaggio.
+
+\item Chiedere all'utente un valore per il seme. Estrarre una carta napoletana (da 1 a 10) e dire se è uscito un re (=10) stampando un messaggio tipo "È uscito il RE".
+
+\item Scegliere un seme a piacere. Lanciare due dadi (classici a 6 facce) e dire se è uscita una coppia.
+
+\item Scegliere un seme a piacere. Chiedere all'utente quante facce deve avere il dado da lanciare e quante volte lanciarlo. Stampare il risultato dei lanci.
+
+\item Chiedere all'utente un valore per il seme. Scegliere un valore per N. Estrarre N numeri random tra 1 e 21 e stampare un messaggio per ogni valore multiplo di 3 o altrimenti.
+
+\item Scegliere un valore per N. Estrarre N numeri random tra 1 e 42 e contare quanti pari e dispari sono stati estratti. Comunicare l'esito alla fine.
+
+\item Scegliere un seme a piacere. Le carte da poker hanno i valori 1, 2, 3, ..., 13. Estrarre 5 carte una alla volta e non appena compare una coppia (cioe' due carte uguali consecutive) interrompere il programma comunicando l'esito.
+
+\item Scrivere un programma che chiede all'utente il numero N di numeri che verranno forniti. Un ciclo permette all'utente di inserire questi numeri uno alla volta e  il numero va ad essere sommato agli altri già inseriti. Il programma termina stampando il valore della somma totale.
+
+\item Scrivere un programma che chiede all'utente il numero N di numeri pseudo-random da generare nell'intervallo [1,10]. Stampare il valore della sommaa totale e della media.
+
+\item Scrivere un programma che genera numeri random in un qualunque intervallo finché non viene ottenuto un multiplo di 5. A quel punto il programma si chiude.
+
+\item Scegliere un seme per il generatore di numeri random. Estrarre 5 numeri  random nell’intervallo [1, 13] e contare quanti sono maggiori/uguale di 7. Stampare solo il messaggio: “ci sono … carte >= 7”.
+
+\item Far scegliere all’utente un valore per il seme ed il numero di random da estrarre. Generare N numeri random nell’intervallo [1,42] e sommare tra loro solo i numeri dispari. Inoltre si deve calcolare la media sul numero di dispari usciti. Stampare la somma totale e la media.
+
+\item Chiedere all’utente un valore per il seme ed inizializzare il generatore. Estrarre due numeri nell’intervallo [1, 10] da un dado a 5 facce e dire se questi sono uno il mutliplo dell’altro.
+
+\item Dati un seme ed un numero N, forniti dall’utente, estrarre max N numeri random nell’intervallo [1, 42] e forzare la chiusura del programma se viene estratto il numero 2.
+
+\item Far scegliere un valore per il seme all’utente. In un ciclo generare dei numeri random nell’intervallo [1,10] e stamparne il valore finché non vengono generati 5 random pari. A quel punto si chiude il programma.
+
+\item Dalle carte da poker [1,13] dire se vengono estratte carte consecutivamente crescenti.
+
+\item Far scegliere un valore per il seme all’utente. In un ciclo generare dei numeri random nell’intervallo [1,10] e stamparne il valore finché non vengono generati 5 random pari. A quel punto si chiude il programma. Ricordarsi di inizializzare il contatore dei pari.
+
+\item Trovare la formula per ottenere da un qualsiasi numero un valore compreso tra 2 e 9. Trovare la formula anche per l'intervallo [5,30].
+
+\item Generare una tabella quadrata di lato N (dove N e' il numero di numeri) composta da random, dato un seme.
+\end{enumerate}
+
+\section{Algoritmi su array}
+
+In questa sezione si trovano esercizi sulla manipolazione di array numerici 1-dim e (pochi) 2-dim; sulla ricorsione con alcune applicazioni matematiche; sulle stringhe intese come \emph{string literal} terminate dal carattere nullo \texttt{'\textbackslash 0'}.
+
+\begin{enumerate}
+
+\item Dichiarare una variabile numerica. Dichiarare due puntatori allo stesso tipo di variabile. Far puntare entrambi alla stessa variabile. Modificare attraverso il deferenziamento di un puntatore il valore della variabile numerica. Stampare questo valore attraverso il secondo puntatore.
+
+\item Definire un array 1-dim di float e lo inizializza a piacere nella stessa istruzione.
+
+\item Inizializza un array 1-dim con i bit della stringa (100101011) e calcola la conversione a decimale, stampandola a terminale.
+
+\item Dichiarare un array 1-dim con le prime 10 potenze di 2 attraverso un ciclo e successivamente stampare i valori a terminale con l'esponente a sx ed il valore a dx.
+
+\item Dichiarare un array 1-dim con i primi 7 numeri primi e copiarli in un altro array di float.
+
+\item Dichiarare un array 1-dim di 5 interi $\{4, 7, 23, 20, 11\}$, sostituire i valori con il modulo 2, e stampare la somma degli elementi dell'array risultante.
+
+\item Dichiarare un array 1-dim di int, inizializzarlo con i primi 20 numeri dispari accedendo agli elementi tramite il puntatore.
+
+\item Dichiarare un array 1-dim con gli elementi del fattoriale di 7 (ovvero 7, 6, 5, ... , 1) e moltiplicarli per stampare poi il risultato di 7!
+
+\item Dichiarare un array 1-dim di int con numeri pseudo-random da 0 a 50 accedendo attraverso puntatore.
+
+\item Dichiarare un array 1-dim di int con numeri pseudo-random da 5 a 46 e stampare a terminale la somma e la media.
+
+\item Dichiarare due array 1-dim di int inizializzati da numeri pseudo-random nello stesso range, ma inizializzati con due semi differenti di una sola unità e stampare la differenza elemento-a-elemento in colonna.
+
+\item Dichiarare un array 1-dim di int con numeri pseudo-random ed un altro array 1-dim dove mettere le differenze degli elementi successivi del primo array e stampare a colonna. Fare attenzione all'estensione del secondo array.
+
+\item Dichiarare un array 1-dim di N naturali random nell'intervallo [1,43]. Registrare gli indici dove si trovano i numeri pari in un vettore dedicato, e quelli dei dispari in un altro. Contare tramite questi due vettori quanti pari e quanti dispari ci sono nell'array di partenza.
+
+\item Dichiarare un array 2-dim di interi di estensione N. Definire una routine che riempie l'array con valori pseudo-random nell'intervallo [9,108] in modo che implementi una matrice simmetrica: \texttt{A[i][j] == A[j][i]}.
+
+\item Dichiarare un array 2-dim di float NxN. Definire una routine che riempie l'array in modo che rappresenti una matrice identità.
+
+\item Dichiarare un array 2-dim di interi NxN. Definire una routine che riempie l'array in modo che rappresenti una matrice triangolare superiore con valori pseudo-random in [0,42].
+
+\item Dichiarare un array 2-dim di interi NxN. Definire una routine che riempie l'array in modo che rappresenti una matrice antisimmetrica: \texttt{A[i][j] == -A[j][i]}. Fare attenzione ai valori della diagonale!
+
+\item Dichiarare un array 2-dim di interi NxN con N sufficientemente grande. Definire una routine che riempie l'array in modo che rappresenti una matrice random sparsa, ovvero una matrice di zero tranne che in poche posizioni con un valore arbitrario (ad es. 1). Per scegliere dove mettere il valore diverso da zero estrarre una coppia di random nell'intervallo appropriato, dove ogni coppia di random estratti sarà la coppia (riga,colonna) quindi indici dell'array. Estrarre un numero di coppie circa il 5\% del totale di valori della matrice.
+
+\item Definire una funzione ricorsiva per calcolare: $f(n,m) = 1+f(n,m-1)$, per $m>0$ con $n$ parametro libero e $f(n,m) = n$, per $m=0$.
+
+\item Definire una funzione ricorsiva F(n) ad un parametro n che restituisce zero quando il parametro n è dispari, 1+F(n/2) quando n è pari.
+
+\item Definire una funzione ricorsiva che implementi una mappa logistica e stampare i primi 20 valori, per un valore arbitrario della costante $R$. La mappa è data da: $f(n=0) = a$, dove $a \in (0,1)$ e $f(n) = R f(n-1) (1 - f(n-1))$, per $n>0$.
+
+\item Definire una funzione ricorsiva che dato un numero naturale restituisce la somma delle cifre del numero (se < 10) oppure il risultato del riapplicare la funzione alla somma delle cifre del numero. Ad es: f(5) = 5, f(452) = f(4+5+2) = f(11) = f(1+1) = f(2) = 2.
+
+\item Definire una funzione ricorsiva per calcolare l'elevamento a potenza $x^n$ attraverso la definizione: $\exp(x, n) = 1$, per $n=0$ e $\exp(x, n) = x \exp(x, n-1)$, per $n>0$.
+
+\item Scrivere una funzione ricorsiva che dato un array di interi restituisce il valore vero se la loro somma è pari.
+
+\item Implementare un algoritmo di ordinamento con complessità polinomiale per ordinare in modo decrescente un array di reali.
+
+\item Implementare un algoritmo di ordinamento con complessità polinomiale per ordinare un array di caratteri tutti minuscoli oppure maiuscoli.
+
+\item Implementare un algoritmo di ordinamento con complessità polinomiale per ordinare un array di caratteri indifferentemente se minuscoli/maiuscoli. Ad es: "eToA" $\rightarrow$ "AeoT".
+
+\item Implementare un algoritmo di ordinamento con complessità logaritmica per ordinare in modo decrescente un array 1-dim di interi.
+
+\item Scrivere un programma che dopo aver ordinato un array di interi, permette all'utente di inserire un nuovo numero che viene "aggiunto" nella posizione corretta dato l'ordinamento crescente. Riflettere su cosa significa aggiungere!
+
+\item Implementare un algoritmo che controlla se gli elementi di un array numerico oppure alfanumerico siano tutti diversi. Sfruttare un algoritmo di ordinamento.
+
+\item Implementare un algoritmo che stampa a terminale i valori di un array senza ripetizioni. Sfruttare un algoritmo di ordinamento.
+
+\item Scrivere un programma che ordina due array di interi di lunghezze diverse ed arbitrarie. Poi esegue la fusione dei due array in un nuovo array in modo che sia ordinato.
+
+\item Dato l'algoritmo Quicksort con pivot l'elemento più a sinistra di ogni sub-array, perché è necessario imporre che l'indice partente da sinistra cerchi elementi > (maggiore strettamente) del pivot?
+
+\item Modificare il Quicksort per includere una scelta qualsiasi del pivot, ad es. elemento centrale oppure ultimo elemento.
+
+\item Implementare una routine di ricerca lineare: dato un array ed un numero da cercare, restituisce l'indice del valore trovato oppure un valore non ammesso se l'elemento non e' presente.
+
+\item Implementare una routine di ricerca binaria: dato un array ordinato decrescente ed un numero da cercare, restituisce l'indice del valore trovato oppure un valore non ammesso se l'elemento non e' presente. L'algoritmo controlla prima l'elemento centrale e poi viene chiamato ricorsivamente sul sotto-array meta' (sx oppure dx rispetto all'elemento centrale) in cui potrebbe trovarsi il numero.
+
+\item Scrivere una routine che inverte un array, cioè [5, 1, 9, 2] $\rightarrow$ [2, 9, 1, 5].
+
+\item Dati due array di uguale lunghezza $v[\,]$ e $w[\,]$, definire una routine che calcola la distanza tra i due in due modi possibili:
+	\begin{enumerate}
+	\item $\max{\left|v[i] - w[i]\right|} \quad i=0,\ldots, N-1$\\
+	\item $\sum{(v[i] - w[i])^2} \quad i=0,\ldots, N-1$\\
+	\end{enumerate}
+La routine deve avere un input per scegliere quale delle due calcolare.
+
+\item Implementare una routine per cercare il punto fisso di un array numerico, ovvero il valore dell'indice j tale che \texttt{v[j] == j}. Assumere che l'array sia ordinato in maniera crescente e che non ci siano elementi ripetuti. Ad es: [-5, 1, 8] $\rightarrow$ 1. Ragionare in modo del tutto simile a quanto fatto con la ricerca binaria.
+
+\item Scrivere una procedura che copia una stringa in un'altra.
+
+\item Scrivere una funzione ricorsiva che dice se due stringhe sono uguali restituendo $0$. Se invece sono una maggiore dell'altra restituisce $+1$ oppure $-1$. L'ordinamento è quello alfabetico e per numero di caratteri.
+
+\item Scrivere una routine che legge una stringa e verifica se contiene doppie.
+
+\item Scrivere una routine che converte le lettere di una stringa in maiuscole, ed una che la converte in minuscole.
+
+\item Scrivere una routine che converte un numero come in formato stringa in un \texttt{int}.
+
+\item Scrivere una routine che legge una stringa e stampa qual è il carattere ripetuto più volte all’interno della stringa.
+
+\item Scrivere una funzione ricorsiva che restituisce un bool se la stringa passata è composta da coppie carattere-numero (o viceversa). Ad es: "0e9Tg6" $\rightarrow$ true; "56y" $\rightarrow$ false.
+
+\item Scrivere una routine che date due stringhe verifica quanti caratteri hanno in comune, se un carattere compare due volte in entrambe le stringhe lo si conti due volte.
+
+\item Date due stringhe, definire una routine che effettua la concatenazione delle due: cioè viene creata una nuova stringa composta dalle due consecutive.
+
+\item Definire una funzione ricorsiva che controlla se una parola è palindroma. Passare una stringa alla funzione, insieme all'indice dell'elemento a sx e quello dell'elemento a dx. Fare la ricorsione su questi due indici.
+
+\item Implementare una routine per riempire una stringa, dichiarata nel main con lunghezza arbitraria, solo con le lettere A, C, G, T.
+
+\item Implementare uno string matcher. Data una sequenza di caratteri, ad es. una stringa di N caratteri, definire una routine che stampa per quali indici dell'array si trova l'inizio del pattern, ovvero una stringa di data lunghezza. Ad es: \texttt{match("GAACGCGAACGTGA", "AAC")} deve restituire le stampe: "pattern found at: 1" e "pattern found at 7".
+
+\item Scrivere un programma che ordina alfabeticamente un array di stringhe. Rappresentare le stringhe come \texttt{const char*}. Un array di stringhe vuol dire un array di puntatori a \texttt{const char}. Ad. es. un dizionario è una struttura dati con tante parole: le vogliamo ordinare. Assumere per semplicità che le stringhe siano fatte solo da minuscole e lettere, ma che abbiano lunghezza diversa e ce ne siano un numero arbitrario.
+
+
+\item Esercizio di verifica.
+
+\begin{itemize}
+\item Dichiarare un array numero di interi, di lunghezza arbitraria $N$, con valori random nell'intervallo $[3, 24]$.
+\item Definire una procedura che stampa l'array.
+\item Definire una funzione che restituisce il valore della standard deviation, ovvero la quantit\`{a}:
+\begin{equation}
+\sigma = \sqrt{\frac{\left( v[0] - \mu \right)^2 + \left( v[1] - \mu \right)^2 + \ldots }{N}},
+\end{equation}
+dove $\mu$ \`{e} la media aritmetica. Ricordarsi che radice quadrata e divisione sono operazioni su numeri reali e non interi, quindi usare \texttt{(float)}.
+\item Definire una funzione ricorsiva che restituisce un bool \texttt{true/false} se un qualunque elemento i-esimo dell'array \texttt{v[i]} \`{e} seguito da un numero \texttt{v[i]} di elementi pi\`{u} piccoli, da verificare iterativamente. Ad es: $[4, 5, 3, 1, 2, 1]  \quad \rightarrow \quad \textrm{true (3 \`{e} seguito da 1,2,1)}$.
+\end{itemize}
+
+\item Esercizio di verifica.
+
+Si vuole stimare il valore $\phi = 1.61803\ldots$ noto come \emph{Sezione Aurea}. Questa è approssimata dal rapporto tra due valori consecutivi della Sequenza di Fibonacci, o in altri termini
+	\begin{equation}
+	\phi \approx \frac{F_{n}}{F_{n-1}}
+	\end{equation}
+	dove, come ben noto
+	\begin{align*}
+	&F_{0}=0,\\
+	&F_{1}=1,\\
+	&F_{n} = F_{n-1} + F_{n-2} \quad  \forall n\geq 2.
+	\end{align*}
+
+L'approssimazione si avvicina sempre più al valore reale di $\phi$ all'aumentare del parametro $n$.
+
+	\begin{itemize}
+	\item Definire una funzione ricorsiva che dato un valore del parametro $n \in \mathbb{N}$ genera il corrispondente elemento della Sequenza di Fibonacci ed del rapporto $\frac{F_{n}}{F_{n-1}}$.
+	\item Definire una procedura che effettua una stampa dei valori della sequenza dei rapporti con indici $1,\ldots N$ così: in una colonna a sinistra l'indice ed in una colonna a destra il valore. Il numero $N$ è un parametro di input della procedura.
+	\item Fornire un esempio nel main in cui si vede la sequenza generata convergere al valore $\phi$. In altre parole scegliere un valore di $n$ per cui la sequenza si avvicina al valore cercato.
+	\end{itemize}
+	
+	
+\item Esercizio di verifica.
+
+	\begin{itemize}
+	\item Dichiarare ed inizializzare una stringa terminata dal nullo.
+	\item Definire una funzione ricorsiva che presa in input una stringa ritorna il numero di cifre \{‘0’, …, ‘9’\} presenti nella stringa.
+	\item Definire una funzione che presa in input una stringa restituisce un carattere di hash cioè valutato come la somma dei numeri ottenuti da ogni carattere in questo modo: se è una cifra: il doppio del valore numerico rappresentato; se altro: il valore corrispondente nella codifica ASCII. L’hash deve essere un carattere minuscolo quindi trasformare il numero ottenuto in uno compreso nell’intervallo [‘a’, ‘z’]. Ad es. se la stringa è “54z” la somma sarebbe 10+8+’z’ = 140 $\rightarrow$ ‘k’.
+	\end{itemize}
+	
+\item Esercizio di verifica.
+
+	\begin{itemize}
+	\item Definire una matrice quadrata NxN. Definire una routine che riempie la matrice in modo che gli elementi in diagonale siano $= 3j - 4$ (dove $j$ è l'indice di riga o colonna) ed altrove interi pseudo-random nell’intervallo [10,90].
+	\item Definire una routine che da una matrice quadrata estrae la diagonale e la salva in un vettore di estensione adatta.
+    	\item Definire una routine di ricerca binaria dove si cerca un intero nel vettore diagonale.
+    	\end{itemize}
+\end{enumerate}
+
+
+
+\section{Programmazione ad Oggetti}
+\subsection{Via Michelin}
+Il computer di bordo di un’automobile è in grado di calcolare il consumo medio conoscendo i km percorsi e i litri di carburante consumati. 
+Definire la classe \texttt{Automobile} con il metodo per il calcolo del consumo medio oltre al costruttore per inizializzare gli attributi.
+
+
+\subsection{Alla fine muore}
+Definire una classe che astrae il concetto di film con gli attributi più opportuni, non accessibili. 
+Implementare un metodo \texttt{printInfo(...)} che stampa le info sul film, ed un paio di costruttori: uno di default ed un altro che ha come parametri i valori da assegnare a tutti gli attributi.
+Definire una sottoclasse \texttt{Azione} che ha un nuovo attributo che ci dice se il protagonista muore oppure no. Implementare un costruttore per assegnare valori agli attributi ereditati ed a quello nuovo. 
+Implementare un overriding del metodo ereditato \texttt{printInfo(...)} che spoilera il film d’azione. 
+
+
+\subsection{Wealth management per proletari}
+Si vuole realizzare una classe che implementa un conto corrente attraverso una classe astratta.
+
+\begin{itemize}
+
+\item Definire una classe \texttt{Cliente} con membri:
+
+	\begin{itemize}
+	\item nome (visibile)
+	\item id (nascosto)
+	\item un costruttore che inizializza tutti gli attributi tranne l'\texttt{id} che dev'essere un intero random in $[0,999]$.
+	\end{itemize}
+
+\item Definire una classe astratta \texttt{Deposito} con membri tutti ereditabili:
+
+	\begin{itemize}
+	\item saldo (nascosto)
+	\item iban (visibile, implementato come stringa)
+	\item cliente (visibile, istanza della classe gi\`a definita)
+	\item un costruttore che inizializza tutti gli attributi
+	\item un metodo che effettua un versamento sul saldo di un importo preso in input dalla funzione.
+	\end{itemize}
+
+\item Definire una classe derivata \texttt{ContoCorrente} con membri, oltre a quelli ereditati:
+
+	\begin{itemize}
+	\item un costruttore che inizializza tutti gli attributi, invocando il costruttore della classe astratta
+	\item un metodo che effettua un prelievo (in modo simile al metodo del versamento) controllando anche che il saldo sia sufficiente.
+	\end{itemize}
+
+\item Per la classe \texttt{ContoCorrente} definire un metodo \texttt{bonifico(...)} che sposta un importo dall'istanza che invoca la funzione ad un'istanza di classe \texttt{Deposito}.
+
+\item Fare un esempio nel main, istanziando due oggetti di tipo \texttt{ContoCorrente} con valori a piacere ed utilizzando i metodi implementati.
+
+\end{itemize}
+
+
+\subsection{Rette e parabole non evangeliche}
+Creare una classe per rappresentare una retta avente equazione $y = ax + b$ con il metodo per controllare se un generico punto appartiene alla retta. Derivare la classe per rappresentare la parabola $y = ax^2 + bx + c$, modificando il metodo per controllare se un punto appartiene alla parabola.
+
+
+\subsection{Atleti flottanti}
+Definire una classe \texttt{Persona} con attributi: nome e posizione. Per il nome scegliere tra una rappresentazione di stringa stile-C, oppure un'istanza della classe \texttt{string}. Implementare la posizione come una terna (array di 3 elementi) di float che rappresentano le coordinate x,y,z nello spazio. Definire una classe \texttt{Atleta} (derivata da quella precedente) che implementa un metodo \texttt{salto(...)} che modifica il valore z dell'array posizione. Implementare correttamente i costruttori delle due classi. Fornire un esempio di salto nel main.
+
+\subsection{Matrix senza slow motion}
+Definire una classe \texttt{Matrix} i cui attributi sono un array 2-dim 2x2, un float \texttt{determinante} (=A[0][0]*A[1][1] – A[0][1]*A[1][0]), una \texttt{traccia} (=somma degli elementi sulla diagonale) ed un seme per il generatore di numeri pseudo-random interi. 
+
+Implementare i metodi per inizializzare gli attributi e riempire la matrice di numeri pseudo-random nell’intervallo [5,20]. Implementare un metodo che restituisce il valore del determinante, informazione altrimenti inaccessibile.
+
+Definire una sotto-classe \texttt{Antisimm} che implementa una matrice antisimmetrica quindi con diagonale nulla.
+
+
+\subsection{Complessi... non complicati!}
+Un numero complesso e' formato da due numeri Reali. Definire una classe \texttt{Complex} con attributi privati la parte reale \texttt{re} e la parte immaginaria \texttt{im}. Definire un costruttore per inizializzare questi valori. Definire, inoltre, dei metodi pubblici per: restituire il valore della parte reale, il valore della parte immaginaria, per calcolare il valore assoluto $\sqrt{\texttt{re}^2 + \texttt{im}^2}$ e per calcolare l'angolo $\texttt{atan2(im,re)}$.
+
+Fare l'overloading dell'operatore \texttt{+} in modo da restituire un valore per un oggetto di tipo \texttt{Complex} che \'e la somma di due numeri complessi definita come $\texttt{re}_{tot} = \texttt{re}_1+\texttt{re}_2$ e $\texttt{im}_{tot} = \texttt{im}_1+\texttt{im}_2$. In modo simile fare l'overloading dell'operatore \texttt{==} dove l'uguaglianza di due complessi \'e: $\texttt{re}_1=\texttt{re}_2$ e $\texttt{im}_1=\texttt{im}_2$.
+
+
+\subsection{Scherzi Borgesiani}
+Il primario di ginecologia-ostetricia dell'ospedale di Tlon ha commesso una grave leggerezza: ha esposto la password per accedere alla gestione del nido. La password è: "bimbibelli". Un sadico infermiere proveniente dalla rivale Uqbar è deciso ad approfittarne: vuole scambiare le culle dei neonati.
+
+\begin{itemize}
+
+\item Definire una classe \texttt{Persona} con il solo attributo nome ed un costruttore che prenda una stringa in input ed inizializzi l'attributo.
+
+\item Definire una sottoclasse della precedente chiamata \texttt{Neonato} con ulteriore attributo numerico \texttt{cullaID} (non accessibile). Equipaggiare la classe con due costruttori: uno che prende una stringa come nome ed assegna all'identificativo della culla un random compreso tra [20, 90]; un altro che prende una stringa ed un numero intero e li assegna ai due attributi.
+
+\item Definire per la classe genitore un metodo \texttt{info(...)} che stampa a terminale il valore dell’attributo \texttt{nome}. Definire per la classe derivata un metodo chiamato allo stesso modo che stampa a terminale i valori degli attributi nome e \texttt{cullaID}.
+
+\item Implementare, inoltre, per \texttt{Neonato}: un metodo che restituisce il valore di \texttt{cullaID} ed un metodo che preso un intero ed una password (stringa) modifica il valore di \texttt{cullaID} con l'intero fornito se e solo se la stringa in input coincide con la password esposta dal primario.
+
+\item Definire una routine che prese due istanze di \texttt{Neonato} ed una password in input, scambia i valori degli identificativi se e solo se la password è corretta.
+
+\item Definire una routine che prese due istanze di \texttt{Neonato} restituisce la stringa valore dell’attributo nome dell’istanza con il valore più piccolo dell’identificativo della culla.
+
+\end{itemize}
+
+
+\subsection{Edi, una lampadina per amica}
+Si vuole realizzare una lampadina che può essere accesa, spenta oppure rotta a seconda di quante volte è stata utilizzata. Archimede provveder\`{a} ad aggiustarla!
+
+\begin{itemize}
+
+\item Definire una classe \texttt{Lampadina} che ha due attributi pubblici \texttt{stato} (con valori possibili -1, 0, 1) e nome. 
+
+\item Definire due costruttori: 
+	\begin{itemize}
+	\item il primo prende un valore per il nome ed inoltre assegna allo  stato un valore random tra quelli ammessi
+	\item l’altro prende in input i valori per entrambi gli attributi.
+	\end{itemize}
+
+\item Definire un metodo \texttt{click(...)} che cambia il valore di \texttt{stato} in modo che la lampadina si accenda (=1) se spenta (=0) o viceversa. Non accade nulla se rotta.
+
+\item Definire una classe \texttt{Test}, derivata dalla precedente, con in pi\`u un attributo \texttt{contatore} intero ed un valore \texttt{max} intero, entrambi non visibili.
+
+\item Equipaggiare questa classe con un costruttore che prende in input i valori per il secondo costruttore della classe genitore, ed inoltre assegna di default zero a \texttt{contatore} e 10 all'attributo \texttt{max}.
+
+\item Fare l'overriding del metodo ereditato \texttt{click(...)} in modo che ad ogni cambio di stato il contatore venga incrementato di 1. Se viene raggiunto il valore \texttt{max} lo stato viene impostato a lampadina rotta (=-1).
+
+\item Definire un metodo \texttt{ripara(...)} che, se la lampadina \texttt{Test} \`e rotta, azzera \texttt{contatore} e resetta \texttt{stato} a spenta.
+
+\end{itemize}
+
+
+\subsection{Il Grand Budapest}
+
+\begin{itemize}
+
+\item Definire una classe \texttt{Camera} con attributi \texttt{id} (int), \texttt{prenotata} (bool), \texttt{giorni} occupati e \texttt{prezzo} giornaliero (attributo nascosto). 
+
+Attenzione: se la camera non dovesse essere prenotata l'attributo dei giorni viene messo a $0$.
+
+\item Definire due costruttori:
+	\begin{itemize}
+	\item il primo prende un valore per l'identificativo ed il prezzo mentre assegna alla prenotazione il valore \texttt{false},
+	\item l’altro prende in input i valori per tutti gli attributi (ignorando il valore dei giorni, se non necessario).
+	\end{itemize}
+
+\item Definire un metodo pubblico \texttt{spesa(...)} che restituisce il valore della spesa totale del cliente.
+
+\item Definire una classe \texttt{Suite} con gli stessi attributi di quella gi\`a definita ed inoltre l'attributo boolean \texttt{jacuzzi}.
+
+\item Definire un costruttore per questa classe che prenda in input i valori per gli attributi con cui invocare il secondo costruttore della super-classe. Inoltre il nuovo attributo \`e inizializzato a \texttt{True}.
+
+\item Fare l'overriding del metodo ereditato applicando lo sconto del $25\%$ nel caso in cui la Jacuzzi non sia utilizzabile.
+
+\item Definire un metodo \texttt{ripara(...)} che esclude la suite dalle prenotazioni e cambia, se necessario, il valore dell'attributo \texttt{jacuzzi}.
+
+\end{itemize}
+
+
+
+\section{Strutture dati dinamiche e classi container}
+
+\subsection{Lista di numeri} 
+Inserire in testa ad una lista un nodo contenente un numero casuale da 0 a 21, ricevuto da terminale. Effettuare la ricerca di un numero scelto in quell'intervallo restituendo in quali nodi (contando dalla testa alla coda) questo valore è presente, se lo è.
+
+\subsection{Elimina code} 
+Scrivi un programma per realizzare una lista di interi inseriti da tastiera, l'inserimento deve essere effettuato da una funzione append che inserisce un elemento in fondo alla lista. Il programma deve prevedere la presenza di una funzione (pop) che toglie il primo elemento inserito dall'utente nella lista.
+
+\subsection{Lista simmetrica}
+Implementare una lista simmetrica per cui ogni nuovo nodo (con un solo attributo, ad es. numerico) viene inserito contemporaneamente in testa ed in coda. Definire una procedura wrapper, ovvero che a sua volta chiama le due procedure una per l'inserimento in testa e l'altra per quello in coda.
+
+\subsection{Lista di città}
+Dopo aver dichiarato una lista per memorizzare un elenco di città, scrivere la funzione per inserire una nuova città in modo che la lista sia in ordine alfabetico.
+
+\subsection{Lista di processi}
+Implementare una lista bi-direzionale in cui un nodo contiene il nome del processo ed il pid. Implementare quindi le routine di inserimento e di eliminazione in testa e coda.
+
+\subsection{Lista della spesa}
+Si vuole implementare una lista bi-direzionale che rappresenti un elenco della spesa. Dev'essere possibile aggiungere e togliere elementi nella lista e calcolare il totale speso. Ogni volta che un prodotto viene acquistato l'importo della spesa viene incrementato con il prezzo del prodotto che viene quindi eliminato dalla lista.
+	\begin{itemize}
+	\item Definire una \texttt{class} oppure una \texttt{struct} come nodo di una lista composta dagli attributi necessari, una stringa per il nome del prodotto ed un reale per il prezzo.
+	\item Definire una routine che dato il nome ed il prezzo di un prodotto esegua l'inserimento in coda del corrispondente nodo.
+	\item Definire una routine che allo stesso modo della routine sopra, esegua l'inserimento in testa del corrispondente nodo.
+	\item Implementare un algoritmo che effettui l'eliminazione del nodo in coda alla lista ed aggiorni l'importo della spesa con il prezzo del prodotto.
+	\item Definire una routine che restituisca il nome dell'elemento della lista con prezzo più alto.
+	\item Fornire un MWE (= minimum working example) nel main, senza usare variabili globali.
+	\end{itemize}
+
+	
+\subsection{Albero bilanciato}
+Implementare una routine di creazione di un albero data una profondità scelta dall'utente riempito di numeri pseudo-random. Implementare anche una routine di stampa con visita a sinistra, una routine per ottenere la somma totale dei valori numerici ed una routine per calcolare il valore medio.
+
+\subsection{Albero di Ricerca Binaria (BST)}
+Implementare una routine di creazione di un albero BST con ordinamento decrescente fissato il numero totale di numeri random forniti.
+
+\subsection{Giardinaggio: Semina}
+Definire una routine che generi un albero binario, fatto di nodi istanze di una struct contenente almeno un attributo numerico con valori pseudo-random all'interno di un intervallo
+arbitrario. Definire una routine che restituisce la somma dei numeri delle foglie (cioè quei nodi che non sono seguiti da altri rami).
+
+\subsection{Giardinaggio: Innesto}
+Dato un albero binario, definire una routine che cerca il valore massimo tra
+tutti i nodi. Se a questo nodo manca un ramo, aggiungerne uno con un valore arbitrario più piccolo (dare precedenza al ramo di sinistra).
+
+\subsection{Giardinaggio: Abbattimento}
+Dato un albero binario definire una routine che trasforma l'albero in una lista i cui elementi sono inseriti (ad es. in coda) visitando i nodi dell'albero.
+
+\subsection{Giardinaggio: Potatura}
+Dato un albero binario scrivere una routine che elimina tutte le foglie e riduce la profondità dell'albero. Procedere per punti:
+	\begin{enumerate}
+	\item Scrivere una routine che visita l'albero e stampa un messaggio quando arriva alla foglia (=ultimo nodo) cioe' il nodo i cui puntatori left, right puntano a \texttt{nullptr}. Verificare che si ottengono il numero giusto di messaggi.
+	\item Eliminare un nodo ma ricordarsi di modificare il valore del puntatore (del nodo superiore) al nullo.
+	\item Se l'albero è stato generato visitando a sinistra, se controllando i puntatori si trova che quello sinistra punta al nullo, allora varrà anche che quello di destra punta al nullo.
+	\item I puntatori dei nodi sono unidirezionali cioe' dall'alto verso il basso, quindi sempre meglio rimanere in alto tanto quanto basta!
+	\item Ricordarsi che il nodo contiene anche l'informazione del livello, che verrebbe modificato dalla potatura.
+	\end{enumerate}
+
+\subsection{Occorrenze di caratteri}
+Si vuole realizzare un albero di ricerca binaria in cui ogni nodo rappresenta un carattere alfanumerico oltre al numero di occorrenze di quel carattere. Ad esempio avendo uno stream di caratteri 'f', 'a', 't', 'a' si deve avere un albero con 'f' primo nodo poi 'a' alla sinistra di 'f', 't' alla destra di 'f' ed al secondo 'a' invece che creare un nuovo nodo viene incrementato l'attributo numerico del nodo.
+	\begin{itemize}
+	\item Definire una struct per rappresentare un nodo dell'albero in cui siano presenti l'attributo char per il carattere e l'attributo numerico per il numero di occorrenze. Fornire anche un costruttore per la struct.
+	\item Definire una routine che, avendo inizializzato il generatore, fornisce un carattere minuscolo random. Si ricorda che le minuscole sono rappresentate da numeri interi $\in [97,122]$.
+	\item Definire una routine ricorsiva che crea l'albero per un numero arbitrario di caratteri random tutti minuscoli. Cioè un albero di ricerca binaria.
+	\item Definire una routine ricorsiva che mostra l'albero: stampare sia carattere sia numero di occorrenze.
+	\item Definire una routine ricorsiva che restituisce un intero che è il numero totale di occorrenze. Verificare che il risultato sia uguale al numero di caratteri generati per creare l'albero!
+	\end{itemize}
+	
+\subsection{Albero di Natale}
+Si vuole realizzare un albero binario che rappresenti un Albero di Natale con tanto di lucine. Si vogliono definire delle routine ricorsive per visitare l'albero. 
+	\begin{itemize}
+	\item Definire una struct per rappresentare un nodo dell'albero in cui sia presente un attributo che indichi uno dei 3 colori possibili (blu, rosso, verde) oppure spento.
+	\item Definire una routine che crea un albero bilanciato di profondità arbitraria (ad es. 4) in cui ogni nodo ha uno dei 3 colori scelto casualmente.
+	\item Definire una routine che mostri l'albero.
+	\item Definire una routine che restituisce un boolean se c'è almeno una foglia con la luce verde.
+	\item Definire una routine che, preso in input anche uno dei tre colori, restituisce il numero di nodi con quel colore.
+	\item Definire una routine che spenga l'albero.
+	\end{itemize}
+
+\subsection{Albero binario di naturali}
+	\begin{itemize}
+	\item Definire una struct per rappresentare un nodo dell'albero in cui sia presente un attributo numerico random compreso in $[3, 42]$.
+	\item Definire una routine che crea un albero bilanciato di profondità arbitraria (ad es. 4) in cui ogni nodo di sinistra ha un valore pari, destra dispari.
+	\item Dichiarare un primo nodo con valore -1.
+	\item Definire una routine che mostri l'albero.
+	\item Definire una routine che restituisce un boolean se c'è almeno una foglia con valore $>10$.
+	\item Definire una routine che restituisce un int somma di tutti i nodi.
+	\item Definire una routine che restituisce un int somma di tutti i nodi escluso il primo.
+	\end{itemize}
+	
+\subsection{Bonsai}
+Il Bonsai è una pianta nana la cui cura è un'arte molto diffusa in Giappone.
+	\begin{itemize}
+    	\item Definire una classe Nodo, con un attributo numerico intero ed un costruttore per inizializzare tutti gli attributi.
+	\item Definire una procedura per costruire un bonsai binario, ovvero un albero con profondità massima di due livelli (escluso il nodo “radice”). Il nodo di destra ha un attributo numerico pari al doppio di quello di sinistra, che è un numero intero random in un intervallo [1 100].
+    	\item Definire una procedura che ricevuto in input il bonsai ed una lista (istanza di \texttt{list<>}) vuota, riempie la lista con i nodi il cui valore numerico è maggiore della metà dell'intervallo dei random.
+    	\end{itemize}
+    	
+    	
+\subsection{Un albero di classe}
+Si vuole definire una classe che implementi un albero binario data una profondità ed il seme da cui generare i numeri random nell'intervallo [1,100] che andranno a riempire l'albero.
+	\begin{enumerate}
+	\item Dichiarare una classe \texttt{nodo} che rappresenta il nodo dell'albero. Equipaggiarla con un costruttore che inizializzi gli attributi in modo appropriato: il valore del nodo preso in input ed i puntatori ai nodi sottostanti inizializzati a \texttt{nullptr}.
+	\item Definire routine per: generare un albero binario dati i due parametri di partenza (seme e profondità); visitare l'albero e stamparne i valori dei nodi e del livello di profondità.
+	\item Dichiarare una classe \texttt{albero} con i due attributi \texttt{seme} e \texttt{profondita}, oltre al puntatore root dell'albero da generare. Equipaggiarla con un costruttore che genera l'albero presi in inputi i valori per i due attributi numerici, sfruttando le routine precedentemente definite.
+	\item Fare l'overloading dell'operatore \texttt{==} in modo che verifichi che due istanze di \texttt{albero} siano uguali nodo-per-nodo e per livelli di profondità.
+	\end{enumerate}
+Il test da eseguire è che due istanze di \texttt{albero} con lo stesso seme e con la stessa profondità sono uguali.
+    
+    	
+\subsection{Container per interi}
+Implementare sia un'istanza di \texttt{list<>} sia di \texttt{vector<>} con N interi pseudo-random nell'intervallo [5, 42]. Utilizzare un \texttt{iterator} per scorrere le due strutture dati e stampare quando il numero contenuto è pari.
+
+\subsection{Videoteca}
+Costruire una videoteca cioè una lista della classe \texttt{list<>} di oggetti che rappresentano un film. Usare la classe string per gli attributi stringhe. Definire un paio di costruttori (overloading) uno per valori default ed un altro per inizializzare tutti gli attributi. Fare qualche esempio di inserimento in testa, coda, eliminazione dei nodi e stampa degli attributi degli oggetti in lista utilizzando un iteratore.
+
+\subsection{Container di alunni}
+Definire una classe \texttt{Alunno} con attributo privato il nome e metodi pubblici un costruttore ed un metodo per stampare il nome. Implementare una \texttt{list<>} di questi oggetti (ad es. 3 alunni). Ripetere la stessa cosa con \texttt{vector<>}. Usando l'\texttt{iterator} far stampare i nomi degli alunni nella \texttt{list<>} ed usando l'indicizzazione nel \texttt{vector<>}.
+
+\subsection{Una scuola all'avanguardia}
+Definire una classe \texttt{Aula} con attributi il nome (stringa ad es. "4Csa"), il numero della stanza (ad es. 100, 101, 102, ...) ed un boolean se ha oppure no la LIM. Implementare una "scuola" come \texttt{map<>} in cui ad ogni numero della stanza viene assegnata un'istanza della classe \texttt{Aula}. Utilizzare un iterator per scorrere la "scuola" e stampare i nomi delle sole classi che hanno la LIM. Ad es. "l'aula della 4Csa ha la LIM".
+
+\subsection{Libreria}
+Definire una classe Libro con attributi titolo ed autore. Usare la struttura dati container preferita per creare una sequenza di libri dello stesso autore. Creare una libreria attraverso \texttt{map<>} in cui ogni chiave è una stringa con il nome di un autore ed il valore mappato è la sequenza di libri.
+    	
+
+\subsection{I vitelloni}
+Estate. Un gruppo di amici passa le giornate ad oziare al bar inventando mille modi per non lavorare.
+	\begin{itemize}
+	\item Definire una classe \texttt{Consumazione} con attributi il \emph{nome}, il \emph{costo} e la \emph{quantit\`a}. Definire due costruttori:
+		\begin{itemize}
+		\item uno che prende in input due valori per i primi due attributi mentre l'attributo \emph{quantit\`a} \`e fissato =1,
+		\item l'altro che prende in input valori per tutti e tre gli attributi.
+		\end{itemize}
+	\item Equipaggiare la classe con un metodo \texttt{spesa(...)} che restituisce la spesa totale conoscendo prezzo e quantit\`a.
+	\item Dichiarare nel main un'oggetto di tipo container lineare (ad es. \texttt{list}, \texttt{vector}) in cui inserire le istanze della classe gi\`a definita. Fare un esempio con 3 istanze nel main: ("Spuma", 1.50, 4), ("Spritz al Cynar", 5.00, 2), ("Bicicletta", 4.50, 1).
+	\item Definire una funzione \texttt{mostra(...)} che preso l'oggetto container in input stampa il nome di ogni consumazione ed infine il prezzo totale.
+	\item Dichiarare nel main un oggetto \texttt{map} che associa ad ogni tavolo, identificato da un numero intero, il conto da saldare in Euro. Fare un solo esempio inserendo una coppia (chiave,oggetto) ad es. (42, 8.90).
+	\end{itemize}
+	
+	
+\subsection{Vacanze al mare}
+
+\begin{itemize}
+\item Definire una classe \texttt{Ombrellone} con attributi il \texttt{nome} del cliente, il numero identificativo \texttt{id} ed il numero di \texttt{giorni} di affitto. Definire due costruttori:
+\begin{itemize}
+	\item uno che prende in input due valori per i primi due attributi mentre il terzo\`e fissato =1 (cio\`e un solo giorno di vacanza),
+	\item l'altro che prende in input valori per tutti e tre gli attributi.
+	\end{itemize}
+\item Equipaggiare la classe con un metodo \texttt{info(...)} che stampa le informazioni dell'ombrellone.
+\item Dichiarare nel main un'oggetto di tipo container lineare (ad es. \texttt{list}, \texttt{vector}) in cui inserire le istanze della classe gi\`a definita. Fare un esempio con 3 istanze nel main: ("Bussola", 314, 30), ("Marinelli", 102, 15), ("Barcacci", 105, 1).
+\item Definire una funzione \texttt{mostra(...)} che preso l'oggetto container in input stampa il nome di ogni cliente.
+\item Dichiarare nel main un oggetto \texttt{map} che associa il numero identificativo dell'ombrellone ad un'istanza. Fare un solo esempio usando una delle istanze gi\`a create prima.
+\end{itemize}
+
+
+\end{document}
